@@ -1,0 +1,23 @@
+# secrets and local config
+.env
+*.env.local
+!.env.example
+
+# Go
+backend/*.exe
+backend/tmp/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
