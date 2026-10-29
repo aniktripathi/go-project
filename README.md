@@ -9,11 +9,12 @@ A full-stack web application to manage income, track expenses, set monthly budge
 | Frontend | React 18, Vite, React Router, Recharts |
 | Optional ML | Python, pandas, scikit-learn, FastAPI |
 
+> **New here?** Start with the [complete setup and user guide](USER_GUIDE.md).
+
 > **Verification status.** In the current Windows workspace, the Go unit tests
 > (`go test ./internal/...`) and frontend production build (`npm run build`)
 > passed, and the API health endpoint returned HTTP 200. Database-backed API
-> integration tests have not been run here. See [the complete usage guide](docs/USAGE_GUIDE.md)
-> for setup, running, testing, demo data, and GitHub publishing instructions.
+> integration tests have not been run here.
 
 ---
 
