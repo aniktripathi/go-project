@@ -198,20 +198,26 @@ uvicorn app:app --port 8001
 Set `ML_SERVICE_URL=http://localhost:8001` in `backend\.env`, then restart the Go
 API. The prediction needs at least four completed months of expense history.
 
-## 8. Publish the project to GitHub
+## 8. GitHub repository and updates
 
-Create an empty GitHub repository named `go-project` (do not initialize it with
-a README, license, or `.gitignore`). Then run these commands from the project
-root, replacing the URL with your repository URL:
+The project is published as the public repository
+[`aniktripathi/go-project`](https://github.com/aniktripathi/go-project). This
+workspace already has the `main` branch and `origin` remote configured.
+
+To download another copy:
 
 ```powershell
-Set-Location "C:\Users\<your-name>\OneDrive\Desktop\finance-tracker\finance-tracker"
-git init -b main
+git clone https://github.com/aniktripathi/go-project.git
+Set-Location go-project
+```
+
+For changes in this existing workspace, review and push them with:
+
+```powershell
 git add .
 git status --short
-git commit -m "Initial finance tracker project"
-git remote add origin https://github.com/YOUR_USERNAME/go-project.git
-git push -u origin main
+git commit -m "Describe your change"
+git push
 ```
 
 Before committing, confirm that `.env`, `backend\.env`, and `frontend\.env`
@@ -220,13 +226,18 @@ dependencies, and generated build output. GitHub may ask you to authenticate in
 the browser or through Git Credential Manager; never put a password or token in
 the remote URL.
 
-For later updates:
+To publish a different copy as a separate repository, first create an empty
+repository on GitHub (do not initialize it with a README, license, or
+`.gitignore`), then run these commands in that copy's project root, replacing
+the example URL:
 
 ```powershell
+git init -b main
 git add .
 git status --short
-git commit -m "Describe your change"
-git push
+git commit -m "Initial finance tracker project"
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+git push -u origin main
 ```
 
 ## 9. Stop and restart
