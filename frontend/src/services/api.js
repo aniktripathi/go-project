@@ -5,7 +5,8 @@
 // rendered text and the app uses no dangerouslySetInnerHTML, which reduces that risk.
 // An HttpOnly cookie would be safer against XSS but needs extra CSRF protection.
 
-const BASE = import.meta.env.VITE_API_URL || '/api';
+const API_HOST = import.meta.env.VITE_API_HOST;
+const BASE = import.meta.env.VITE_API_URL || (API_HOST ? `https://${API_HOST}/api` : '/api');
 const TOKEN_KEY = 'ft_token';
 
 export const tokenStore = {

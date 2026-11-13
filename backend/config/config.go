@@ -29,7 +29,7 @@ func Load() (*Config, error) {
 	_ = godotenv.Load()
 
 	cfg := &Config{
-		Port:         getEnv("APP_PORT", "8080"),
+		Port:         getEnv("PORT", getEnv("APP_PORT", "8080")),
 		GinMode:      getEnv("GIN_MODE", "debug"),
 		DatabaseURL:  os.Getenv("DATABASE_URL"),
 		JWTSecret:    os.Getenv("JWT_SECRET"),
@@ -44,7 +44,7 @@ func Load() (*Config, error) {
 		return nil, err
 	}
 	for _, origin := range strings.Split(getEnv("CORS_ALLOWED_ORIGINS", "http://localhost:5173"), ",") {
-		origin = strings.TrimSpace(origin)
+		origin = normalizeOrigin(origin)
 		if origin != "" {
 			cfg.AllowedOrigins = append(cfg.AllowedOrigins, origin)
 		}
@@ -57,6 +57,14 @@ func Load() (*Config, error) {
 		return nil, fmt.Errorf("JWT_SECRET must be set and at least 32 characters long")
 	}
 	return cfg, nil
+}
+
+func normalizeOrigin(origin string) string {
+	origin = strings.TrimSpace(origin)
+	if origin != "" && !strings.Contains(origin, "://") {
+		return "https://" + origin
+	}
+	return origin
 }
 
 func getEnv(key, fallback string) string {

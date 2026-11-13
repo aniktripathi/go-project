@@ -141,6 +141,33 @@ Open <http://localhost:5173>. Vite forwards `/api` requests to the Go backend on
 
 Production build check: `npm run build` (creates `frontend/dist`).
 
+## 6. Deploy the full stack on Render
+
+The root `render.yaml` Blueprint defines a React static site and Go API on
+Render's free plans. The API may spin down while idle. PostgreSQL is not hosted
+by this Blueprint: provide a connection string from a PostgreSQL host whose
+free plan meets your needs (for example, Neon). Free-plan quotas and terms can
+change, so check the provider's current limits and backup options.
+
+1. Push this repository to GitHub.
+2. In Render, choose **New → Blueprint**, connect this GitHub repository, and
+   select the branch to deploy.
+3. Create a PostgreSQL database on your chosen provider and copy its connection
+   string. Keep it private.
+4. Review the services and plans shown by Render, then apply the Blueprint.
+   When prompted, provide the database connection string for `DATABASE_URL`.
+   Render generates a private `JWT_SECRET`.
+5. After Render creates both services, wait for the API health check and
+   frontend build to pass. Open the frontend URL shown by Render and register
+   your own account.
+
+The deployment does not seed demo data. Do not use real financial or personally
+identifiable information unless you have reviewed the hosting provider's
+security, privacy, backup, and billing settings. The optional prediction
+service is not included in this deployment. The app code and components use
+open-source software; the hosting providers are separate services with their
+own terms.
+
 ## 7. Test the APIs with Postman
 
 1. Install Postman, choose *Import* and select `postman/FinanceTracker.postman_collection.json`.
